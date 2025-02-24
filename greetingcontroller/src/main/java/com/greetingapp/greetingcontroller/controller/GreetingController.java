@@ -31,7 +31,7 @@ public class GreetingController {
             return Map.of("message", "Hello from DELETE method!");
         }
 
-        //UC2-Add Service Layer
+        //UC2
 
     private final GreetingService greetingService;
 
@@ -47,4 +47,14 @@ public class GreetingController {
         return "{\"message\": \"" + greetingMessage + "\"}";
     }
 
+    //UC3 - Give lastName and firstName
+
+    // GET request - Accepts firstName and lastName as query parameters
+    @GetMapping("/UC3")
+    public String getGreeting(@RequestParam(required = false) String firstName,
+                              @RequestParam(required = false) String lastName) {
+        String greetingMessage = greetingService.getGreetingMessage(firstName, lastName);
+        return "{\"message\": \"" + greetingMessage + "\"}";
     }
+    }
+
