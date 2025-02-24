@@ -1,5 +1,6 @@
 package com.greetingapp.greetingcontroller.controller;
 
+import com.greetingapp.greetingcontroller.servicelayer.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Map;
 @RequestMapping("/greeting")
 public class GreetingController {
 
-        //UC01
+        //UC1
 
         @GetMapping
         public Map<String, String> getGreeting() {
@@ -29,4 +30,21 @@ public class GreetingController {
         public Map<String, String> deleteGreeting() {
             return Map.of("message", "Hello from DELETE method!");
         }
+
+        //UC2
+
+    private final GreetingService greetingService;
+
+    // Constructor injection of the GreetingService
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+    @GetMapping("/UC2")
+    public String greetingService() {
+        // Use GreetingService to get the greeting message
+        String greetingMessage = greetingService.getGreetingMessage();
+        return "{\"message\": \"" + greetingMessage + "\"}";
+    }
+
     }
