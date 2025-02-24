@@ -31,7 +31,7 @@ public class GreetingController {
             return Map.of("message", "Hello from DELETE method!");
         }
 
-        //UC2
+        //UC2-Add Service Layer
 
     private final GreetingService greetingService;
 
