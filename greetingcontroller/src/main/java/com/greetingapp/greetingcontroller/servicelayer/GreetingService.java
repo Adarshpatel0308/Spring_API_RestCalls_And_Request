@@ -13,12 +13,12 @@ import java.util.Map;
 @Service
 public class GreetingService {
 
-        // Method to return the greeting message
-        public String getGreetingMessage() {
-            return "Hello World";
-        }
+    // Method to return the greeting message
+    public String getGreetingMessage() {
+        return "Hello World";
+    }
 
-        //UC3 ---------------------------------------
+    //UC3 ---------------------------------------
 
     // Method to return greeting message based on user attributes
     public String getGreetingMessage(String firstName, String lastName) {
@@ -68,6 +68,16 @@ public class GreetingService {
 
         // Save the updated Greeting to the database
         return greetingMessageRepository.save(existingGreeting);
-}
     }
+
+    //UC8 --> Delete a Greeting by ID
+
+    public void deleteGreeting(Long id) {
+        if (greetingMessageRepository.existsById(id)) {
+            greetingMessageRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Greeting not found with ID: " + id);
+        }
+    }
+}
 

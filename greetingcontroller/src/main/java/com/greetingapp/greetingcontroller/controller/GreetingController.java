@@ -88,6 +88,18 @@ public class GreetingController {
             @PathVariable Long id,
             @RequestBody GreetingMessage updatedGreeting) {
         return greetingService.updateGreeting(id);
-}
+
+    }
+
+    //UC 08: Delete a Greeting by ID
+    @DeleteMapping("/delete/{id}")
+    public Map<String, String> deleteGreeting(@PathVariable Long id) {
+        try {
+            greetingService.deleteGreeting(id);
+            return Map.of("message", "Greeting deleted successfully!");
+        } catch (RuntimeException e) {
+            return Map.of("error", e.getMessage());
+        }
+    }
 }
 
