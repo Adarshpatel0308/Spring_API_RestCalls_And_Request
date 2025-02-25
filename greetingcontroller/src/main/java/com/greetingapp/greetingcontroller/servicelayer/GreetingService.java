@@ -1,5 +1,8 @@
 package com.greetingapp.greetingcontroller.servicelayer;
 
+import com.greetingapp.greetingcontroller.model.GreetingMessage;
+import com.greetingapp.greetingcontroller.repository.GreetingMessageRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +26,22 @@ public class GreetingService {
         } else {
             return "Hello World!";
         }
+    }
+
+    //UC4 - save the message in sql database
+
+    private final GreetingMessageRepository greetingMessageRepository;
+
+    @Autowired
+    public GreetingService(GreetingMessageRepository greetingMessageRepository) {
+        this.greetingMessageRepository = greetingMessageRepository;
+    }
+
+    // Method to save a greeting message
+    public GreetingMessage saveGreetingMessage(String message) {
+        GreetingMessage greetingMessage = new GreetingMessage();
+        greetingMessage.setMessage(message);
+        return greetingMessageRepository.save(greetingMessage);  // Saves the greeting message in the database
     }
     }
 

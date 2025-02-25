@@ -1,6 +1,7 @@
 package com.greetingapp.greetingcontroller.controller;
 
 import com.greetingapp.greetingcontroller.servicelayer.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -55,6 +56,16 @@ public class GreetingController {
                               @RequestParam(required = false) String lastName) {
         String greetingMessage = greetingService.getGreetingMessage(firstName, lastName);
         return "{\"message\": \"" + greetingMessage + "\"}";
+    }
+
+    //UC4 --> API to save the message to the database
+
+    // Endpoint to save a greeting message
+    @PostMapping("/UC4")
+    public String saveGreeting(@RequestBody Map<String, String> request) {
+        String message = request.get("message");
+        greetingService.saveGreetingMessage(message);
+        return "Greeting message saved!";
     }
     }
 
