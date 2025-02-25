@@ -4,6 +4,11 @@ import com.greetingapp.greetingcontroller.model.GreetingMessage;
 import com.greetingapp.greetingcontroller.repository.GreetingMessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class GreetingService {
@@ -49,5 +54,11 @@ public class GreetingService {
         return greetingMessageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Greeting not found with ID: " + id));
     }
+
+    // UC06: Retrieve All Greetings
+    public List<GreetingMessage> getAllGreetings() {
+        return greetingMessageRepository.findAll();
+    }
+    
     }
 
