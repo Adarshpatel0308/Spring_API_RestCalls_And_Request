@@ -59,6 +59,15 @@ public class GreetingService {
     public List<GreetingMessage> getAllGreetings() {
         return greetingMessageRepository.findAll();
     }
-    
+
+    // UC07: Update an Existing Greeting
+    public GreetingMessage updateGreeting(Long id) {
+        // Find existing Greeting by ID
+        GreetingMessage existingGreeting = greetingMessageRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Greeting not found with ID: " + id));
+
+        // Save the updated Greeting to the database
+        return greetingMessageRepository.save(existingGreeting);
+}
     }
 
