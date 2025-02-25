@@ -43,5 +43,11 @@ public class GreetingService {
         greetingMessage.setMessage(message);
         return greetingMessageRepository.save(greetingMessage);  // Saves the greeting message in the database
     }
+
+    // UC05: Find a Greeting by ID
+    public GreetingMessage getGreetingById(Long id) {
+        return greetingMessageRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Greeting not found with ID: " + id));
+    }
     }
 
